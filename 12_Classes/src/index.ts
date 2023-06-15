@@ -1,45 +1,43 @@
-//(A) Exapmle 1: Passing tag under querySelector
+class Invoice {
+    client : string;
+    date: string;
+    amount: number;
 
-const anchor = document.querySelector('a');
-console.log(anchor);
+    //Constructor function - to initialize the values
+    constructor(c : string, d : string, a : number){
+        this.client = c;
+        this.date = d;
+        this.amount = a;
+    }
 
-// console.log(anchor.href); //Error
+    //Method - to return something (here a string) 
 
-//Insteadd We can do following 2 things 
+    format(){
+        return (`Received ${this.amount} from ${this.client} on ${this.date}`);
+    }
 
-//1 :- Adding If statement  
-if(anchor){
-    console.log(anchor.href);
 }
-// OR
 
-// 2:- Adding ! after querySelector 
-const anchor1 = document.querySelector('a') ! ;  //put ! after bracket
-console.log(anchor1.href);
+const invoice1 = new Invoice ('Ram', '12 Dec', 2000);
+const invoice2 = new Invoice ('Sita', '19 Feb', 1500);
+
+console.log(invoice1); // We can print this invoice1 & 2 object without defining method but to print in any specific format/pattern (like in sting) we need method 
+console.log(invoice2); 
 
 
-// (B) Exapmle 2: Passing any class or id under querySelector 
+// let invoices: string[] = [];  // => By this ONLY strings are allowed to put in this arrray
 
-const form = document.querySelector('.new-item-form') as HTMLFormElement;
-console.log(form);
+let invoices: Invoice[] = []; // => By this ONLY Invoices are allowed to put in this arrray
 
-//inputs 
+// invoices.push('Ram');  // It will give error as ONLY invoices are allowed to put in this & not any other type
+invoices.push(invoice1);
+invoices.push(invoice2);
 
-const type = document.querySelector('#type') as HTMLSelectElement;
-const toFrom = document.querySelector('#tofrom') as HTMLInputElement;
-const details = document.querySelector('#details') as HTMLInputElement;
-const amount = document.querySelector('#amount') as HTMLInputElement;
+//We can change like this also :-
 
-// console.log(type) -access 1 element only
+invoice1.client = 'Hari';
+invoice2.amount = 5000;
 
-form.addEventListener('submit', (ev: Event)=>{
-    ev.preventDefault();
-    console.log(
-        type.value,
-        toFrom.value,
-        details.value,
-        amount.valueAsNumber //We want to view value as number(valueAsDate) than String
-    )
-});
+console.log(invoices);
 
 

@@ -1,28 +1,26 @@
 "use strict";
-//(A) Exapmle 1: Passing tag under querySelector
-const anchor = document.querySelector('a');
-console.log(anchor);
-// console.log(anchor.href); //Error
-//Insteadd We can do following 2 things 
-//1 :- Adding If statement  
-if (anchor) {
-    console.log(anchor.href);
+class Invoice {
+    //Constructor function - to initialize the values
+    constructor(c, d, a) {
+        this.client = c;
+        this.date = d;
+        this.amount = a;
+    }
+    //Method - to return something (here a string) 
+    format() {
+        return (`Received ${this.amount} from ${this.client} on ${this.date}`);
+    }
 }
-// OR
-// 2:- Adding ! after querySelector 
-const anchor1 = document.querySelector('a'); //put ! after bracket
-console.log(anchor1.href);
-// (B) Exapmle 2: Passing any class or id under querySelector 
-const form = document.querySelector('.new-item-form');
-console.log(form);
-//inputs 
-const type = document.querySelector('#type');
-const toFrom = document.querySelector('#tofrom');
-const details = document.querySelector('#details');
-const amount = document.querySelector('#amount');
-// console.log(type) -access 1 element only
-form.addEventListener('submit', (ev) => {
-    ev.preventDefault();
-    console.log(type.value, toFrom.value, details.value, amount.valueAsNumber //We want to view value as number(valueAsDate) than String
-    );
-});
+const invoice1 = new Invoice('Ram', '12 Dec', 2000);
+const invoice2 = new Invoice('Sita', '19 Feb', 1500);
+console.log(invoice1); // We can print this invoice1 & 2 object without defining method but to print in any specific format/pattern (like in sting) we need method 
+console.log(invoice2);
+// let invoices: string[] = [];  // => By this ONLY strings are allowed to put in this arrray
+let invoices = []; // => By this ONLY Invoices are allowed to put in this arrray
+// invoices.push('Ram');  // It will give error as ONLY invoices are allowed to put in this & not any other type
+invoices.push(invoice1);
+invoices.push(invoice2);
+//We can change like this also :-
+invoice1.client = 'Hari';
+invoice2.amount = 5000;
+console.log(invoices);
