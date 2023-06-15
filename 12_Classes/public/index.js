@@ -3,12 +3,12 @@ class Invoice {
     //Constructor function - to initialize the values
     constructor(c, d, a) {
         this.client = c;
-        this.date = d;
+        this.details = d;
         this.amount = a;
     }
     //Method - to return something (here a string) 
     format() {
-        return (`Received ${this.amount} from ${this.client} on ${this.date}`);
+        return (`Received ${this.amount} from ${this.client} on ${this.details}`);
     }
 }
 const invoice1 = new Invoice('Ram', '03/08/2021', 2000);
@@ -26,6 +26,6 @@ invoice2.amount = 5000;
 console.log(invoices);
 // To print values under the classe / object
 invoices.forEach(inv => {
-    console.log(inv.client, inv.date, inv.amount);
+    console.log(inv.client, inv.details, inv.amount);
     console.log(inv.format());
 });
